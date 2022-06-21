@@ -1,6 +1,6 @@
 import Webhook from './src/webhook'
 
-module.exports.pipefy = async (event: any) => {
+module.exports.sendUpdateMessage = async (event: any) => {
     let body: any
     try {
         body = JSON.parse(event.body)

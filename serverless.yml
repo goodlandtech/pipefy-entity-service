@@ -12,6 +12,10 @@
 # Happy Coding!
 
 service: pipefy-entity-service
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -58,8 +62,12 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  field-update:
+    handler: handler.sendUpdateMessage
+    events:
+      - http:
+          path: send-update-message
+          method: any
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
