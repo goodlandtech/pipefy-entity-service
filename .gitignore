@@ -6,3 +6,4 @@ jspm_packages
 .serverless
 
 node_modules
+.build
