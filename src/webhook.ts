@@ -64,12 +64,18 @@ export default class Webhook {
         this.raw = body
         this.isValid = false
         this.movement = this._getMovement(this.raw)
+        this.field = this.getFieldId(this.raw)
+        this.newValue = this.getNewValue(this.raw)
+        this.cardId = this.getCardId(this.raw)
     }
     raw: IWebhook
     isValid: boolean | undefined = undefined
     private cardManagementFieldId: string = "card_management"
     webhook: IWebhook | undefined
     movement: string | undefined
+    field: string | undefined
+    newValue: string | undefined
+    cardId: string | number
 
     private _getMovement(webhook: IWebhook): string | undefined {
         let result: string
@@ -97,6 +103,30 @@ export default class Webhook {
         if (!this.movement) { console.log("There was no phase movement to update"); return false }
         const response: IUpdateFieldResponse = await card.updateField(this.cardManagementFieldId, this.movement, "ADD")
         return response.data.updateFieldsValues.success
+    }
+
+    private getFieldId(webhook: IWebhook) {
+        let result: string | undefined
+        if ("field" in webhook.data) {
+            result = webhook.data.field.id
+        } else {
+            result = undefined
+        }
+        return result
+    }
+
+    private getNewValue(webhook: IWebhook) {
+        let result: string | undefined
+        if ("field" in webhook.data) {
+            result = webhook.data.new_value
+        } else {
+            result = undefined
+        }
+        return result
+    }
+
+    private getCardId(webhook: IWebhook) {
+        return this.raw.data.card.id
     }
 
 }

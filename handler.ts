@@ -1,4 +1,6 @@
+import EntityUpdate from './src/entity-update'
 import Webhook from './src/webhook'
+import Card from './src/pipefy.card'
 
 module.exports.sendUpdateMessage = async (event: any) => {
     let body: any
@@ -9,8 +11,16 @@ module.exports.sendUpdateMessage = async (event: any) => {
             body: ${event.body}
             error: ${e}`)
     }
+    console.log("test")
     const webhook = new Webhook(body)
-    console.log(webhook.raw)
+    const card = new Card(webhook.cardId)
+    await card.initializeCard()
+    const entityUpdateService = new EntityUpdate(webhook, card)
+    console.log(entityUpdateService.cardId)
+    console.log(entityUpdateService.cipherTraceId)
+    console.log(entityUpdateService.fieldId)
+    console.log(entityUpdateService.newValue)
+
     return {
         statusCode: 200,
         body: JSON.stringify(
