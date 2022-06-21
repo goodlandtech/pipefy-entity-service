@@ -10,8 +10,6 @@ export default class EntityUpdateService {
         this.cipherTraceId = this.getCipherTraceId()
     }
 
-
-
     fieldId
     newValue
     cardId
@@ -28,11 +26,21 @@ export default class EntityUpdateService {
         return cipherTraceIdField?.value
     }
 
-    branchOnField(fieldId: string) {
+    publishUpdate(fieldId: string | undefined) {
+
         if (fieldId === "legal_name") {
             console.log(`The legal name is ${this.newValue}`)
+            /* Requirments for updating Entity:
+                resource_name
+                curent_version
+                
+            */
         } else if (fieldId === "entity_type") {
             console.log(`The category is ${this.newValue}`)
+        } else {
+            console.log(`the fieldId is not handled.`)
         }
     }
+
+
 }
