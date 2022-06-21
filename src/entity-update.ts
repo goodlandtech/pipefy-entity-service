@@ -7,7 +7,10 @@ export default class EntityUpdateService {
         this.newValue = webhook.newValue
         this.cardId = webhook.cardId
         this.card = card
+        this.cipherTraceId = this.getCipherTraceId()
     }
+
+
 
     fieldId
     newValue
@@ -20,7 +23,7 @@ export default class EntityUpdateService {
         console.log(this.fieldId, this.newValue)
     }
 
-    async getCipherTraceId() {
+    getCipherTraceId() {
         const cipherTraceIdField = this.card.getField("ciphertraaceid")
         return cipherTraceIdField?.value
     }
