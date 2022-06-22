@@ -6,12 +6,30 @@ export interface UpdateEntityRequest {
     relationship_changes: EntityRelationshipChange
 }
 
+interface EntityRelationshipChange {
+    field_mask: any
+    type: RelationshipChangeType
+    relationship_change: EntityContact |
+    EntityCountry |
+    TrisaRegistration |
+    EntityAttachment |
+    EntityBankInfo |
+    EntityKyc |
+    EntityAssetEvaluation |
+    EntityVolumeData |
+    EmailAddress |
+    EntityVolumeData |
+    EmailAddress |
+    PhoneNumber |
+    BankingRoutingInfo
+}
+
 interface Entity {
-    resrouce_name: string
-    verison: number
+    resource_name: string
+    version: number
     legal_name: string
-    comon_name: string
-    catagory: Category
+    common_name: string
+    category: Category
     updated_by: string
     updated_date: Date
     urls: string[]
@@ -25,6 +43,15 @@ interface Entity {
 
 }
 
+interface EntityContact {
+    resource_name: string
+    person_resource_name: string
+    entity_resource_name: string
+    start_date: string
+    end_date: string
+    role: Role
+    person: Person
+}
 
 interface Category {
     resource_name: string
@@ -33,18 +60,19 @@ interface Category {
     version: number
 }
 
+
 export default class EntityServiceClient {
     constructor() {
         this.domain = "ciphertrace.com"
-        this.service = "enitity"
+        this.service = "entity"
         this.subService = ""
-        this.resrouceNamePrefix = this.getResourceNamePrefix()
+        this.resourceNamePrefix = this.getResourceNamePrefix()
     }
 
     domain: string
     service: string
     subService: string
-    resrouceNamePrefix: string
+    resourceNamePrefix: string
 
     getResourceNamePrefix(): string {
         return `${this.domain}:${this.service}:${this.subService}:`

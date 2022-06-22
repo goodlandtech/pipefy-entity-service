@@ -30,13 +30,26 @@ export default class EntityUpdateService {
 
         if (fieldId === "legal_name") {
             console.log(`The legal name is ${this.newValue}`)
-            /* Requirments for updating Entity:
+            /* Requirements for updating Entity:
                 resource_name
-                curent_version
+                current_version
                 
             */
+        } else if (fieldId === "name_1") {
+            console.log(`The common name is ${this.newValue}`)
         } else if (fieldId === "entity_type") {
             console.log(`The category is ${this.newValue}`)
+        } else if (fieldId === "opened") {
+            console.log(`The open date is ${this.newValue}`)
+        } else if (fieldId === "closed") {
+            console.log(`The closed date is ${this.newValue}`)
+        } else if (fieldId === "web address") {
+            console.log(`The url is ${this.newValue}`)
+        }
+        //Differentiating between compliance & entity email when both have id of "email"
+        //There are notes with the id "notes", "ciphertrace_notes", and "new_ciphertrace_notes" 
+        else if (fieldId === "ciphertrace_notes") {
+            console.log(`The notes are ${this.newValue}`) 
         } else {
             console.log(`the fieldId is not handled.`)
         }
