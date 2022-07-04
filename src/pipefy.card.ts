@@ -57,6 +57,11 @@ interface IPipefyError {
     message: string
 }
 
+interface IpublishedTable {
+    tableId: string
+    organiztionFieldId: string
+}
+
 
 export default class Card {
 
@@ -76,6 +81,50 @@ export default class Card {
     title: string | null = null
     parentRelations: ICardRelationship[] = []
     childRelations: ICardRelationship[] = []
+    publishedTables: IpublishedTable[] = [
+        {
+            // organization
+            tableId: "pV7tzY9e",
+            organiztionFieldId: "[data.card.pipe.id]"
+        },
+        {
+            // OrgURL
+            tableId: "",
+            organiztionFieldId: ""
+        },
+        {
+            // OrgEmail
+            tableId: "",
+            organiztionFieldId: ""
+        },
+        {
+            // OrgPhone
+            tableId: "",
+            organiztionFieldId: ""
+        },
+        {
+            // PersonOrgRole
+            tableId: "",
+            organiztionFieldId: ""
+        },
+        {
+            // countryOrgRel
+            tableId: "",
+            organiztionFieldId: ""
+        },
+        {
+            // assetEvaluation
+            tableId: "",
+            organiztionFieldId: ""
+        },
+    ]
+
+    // outstanding tables that need to be handled
+    /** 
+     * person
+     * category
+     * country
+    */
 
 
 
@@ -111,6 +160,14 @@ export default class Card {
     private _getCleanRealtions(relations: ICardRelationship[]) {
         return relations
             .filter((relation: ICardRelationship) => relation.cards.length > 0)
+    }
+
+    getOrgId() {
+        const entityServiceTables = [
+            {
+
+            }
+        ]
     }
 
 }

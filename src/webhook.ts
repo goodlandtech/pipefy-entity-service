@@ -64,7 +64,7 @@ export default class Webhook {
     newValue: string | undefined
     cardId: string | number
 
-    private getFieldId(webhook: IWebhook) {
+    private getFieldId(webhook: IWebhook): string | undefined {
         let result: string | undefined
         if ("field" in webhook.data) {
             result = webhook.data.field.id
@@ -74,7 +74,7 @@ export default class Webhook {
         return result
     }
 
-    private getNewValue(webhook: IWebhook) {
+    private getNewValue(webhook: IWebhook): string | undefined {
         let result: string | undefined
         if ("field" in webhook.data) {
             result = webhook.data.new_value

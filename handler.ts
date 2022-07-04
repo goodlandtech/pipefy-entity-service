@@ -20,6 +20,7 @@ module.exports.publishEntity = async (event: any) => {
     console.log(entityUpdateService.cipherTraceId)
     console.log(entityUpdateService.fieldId)
     console.log(entityUpdateService.newValue)
+    entityUpdateService.publishUpdate(entityUpdateService.fieldId)
 
     return {
         statusCode: 200,
