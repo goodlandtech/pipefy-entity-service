@@ -1,7 +1,7 @@
 import Webhook from "./webhook"
 import Card from './pipefy.card'
 
-export default class EntityUpdateService {
+export default class Entity {
     constructor(webhook: Webhook, card: Card) {
         this.fieldId = webhook.field
         this.newValue = webhook.newValue
@@ -23,11 +23,6 @@ export default class EntityUpdateService {
     getCipherTraceId() {
         const cipherTraceIdField = this.card.getField("ciphertraaceid")
         return cipherTraceIdField?.value
-    }
-
-    publishEntity() {
-        const cardData = this.card.
-
     }
 
 
